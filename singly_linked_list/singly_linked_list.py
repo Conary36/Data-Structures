@@ -54,19 +54,18 @@ class LinkedList:
         if self.head is None:
             return None
 
+        old_value = self.tail.get_value()
         if self.head == self.tail:
-            old_value = self.head.get_value()
             self.head = None
             self.tail = None
             return old_value
         else:
-            old_value = self.tail.get_value()
             current_node = self.head
-            while current_node.get_next() != self.tail:
-                current_node = current_node.get_next()
+            while current_node.get_next_node() is not self.tail:
+                current_node = current_node.get_next_node()
 
+            self.tail.set_next_node(None)
             self.tail = current_node
-            self.tail.set_next(None)
             return old_value
 
     def contains(self, value):
@@ -88,4 +87,3 @@ class LinkedList:
                 max_val = current.value
             current = current.next_node
         return max_val
-
