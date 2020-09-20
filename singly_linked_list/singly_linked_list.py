@@ -98,7 +98,7 @@ class LinkedList:
             if value <= self.head.get_value():
                 self.add_to_head(value)
             else:
-                # check if there is exacdtly one element
+                # check if there is exactly one element
                 if self.head == self.tail:
                     self.add_to_tail(value)
                 else:

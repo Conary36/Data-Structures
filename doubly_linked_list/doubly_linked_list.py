@@ -10,6 +10,12 @@ class ListNode:
         self.value = value
         self.next = next
 
+    def get_value(self):
+        return self.value
+
+    def get_next_node(self):
+        return self.next_node
+
     def delete(self):
         if self.prev:
             self.next.prev = self.prev
@@ -90,7 +96,7 @@ class DoublyLinkedList:
             self.tail.next = new_node
             self.tail = new_node
 
-        self.tail.next = self.haed
+        self.tail.next = self.head
         self.head.prev = self.tail
 
     """
@@ -120,7 +126,11 @@ class DoublyLinkedList:
     """
 
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return
+        self.delete(node)
+        self.add_to_tail(node.value)
+
 
     """
     Deletes the input node from the List, preserving the 
@@ -150,7 +160,31 @@ class DoublyLinkedList:
     """
     Finds and returns the maximum value of all the nodes 
     in the List.
+    
     """
 
     def get_max(self):
-        pass
+        if not self.head:
+            return None
+        current = self.head
+        max_val = current.value
+        while current:
+            if current.value < max_val:
+                max_val = current.value
+            current = current.next
+        return max_val
+
+    """
+    Prints List
+    """
+    def print_doubly_list(self):
+        print("this list has doubly elements:")
+        ptr = self.head.next
+        ptr2 = self.tail.prev
+        while ptr or ptr2 is not None:
+            print(ptr.get_value())
+            print(ptr2.get_value())
+            ptr = ptr.get_next_node()
+            ptr2 = ptr2.get_next_node()
+
+        print("End of list")
