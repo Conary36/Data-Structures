@@ -87,3 +87,39 @@ class LinkedList:
                 max_val = current.value
             current = current.next_node
         return max_val
+
+    def add_to_sorted_list(self, value):
+
+        if self.head is None:
+            new_node = Node(value)
+            self.head = new_node
+            self.tail = new_node
+        else:
+            if value <= self.head.get_value():
+                self.add_to_head(value)
+            else:
+                # check if there is exacdtly one element
+                if self.head == self.tail:
+                    self.add_to_tail(value)
+                else:
+                    ptr = self.head
+
+                    while ptr.get_value() <= value and ptr.get_next_node().get_value() <= value:
+                        ptr = ptr.get_next_node()
+
+                    if ptr == self.tail:
+
+                        self.add_to_tail(value)
+                    else:
+                        new_node = Node(value)
+                        new_node.set_next_node(ptr.get_next_node())
+                        ptr.set_next_node(new_node)
+
+    def print_list(self):
+        print("this list has following elements:")
+        ptr = self.head
+        while ptr is not None:
+            print(ptr.get_value())
+            ptr = ptr.get_next_node()
+        print("End of list")
+        return
