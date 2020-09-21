@@ -18,6 +18,9 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    def __len__(self):
+        return self.size
+
     def add_to_head(self, value):
         new_node = Node(value)
         if self.head is None:

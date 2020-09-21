@@ -30,43 +30,35 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #            return None
 #         return self.storage.pop(0)
 #
-import sys
+# import sys
 
-sys.path.append('./singly_linked_list/')
-from singly_linked_list.singly_linked_list import Node, LinkedList
+# sys.path.append('./singly_linked_list/')
+from singly_linked_list.singly_linked_list import LinkedList
 
 
 class Queue:
     def __init__(self):
         self.size = 0
-        self.front: LinkedList[Node] = None
-        self.rear: LinkedList[Node] = None
         self.storage = LinkedList()
 
     def __len__(self):
-        return len(self.storage)
+        return self.size
 
     def is_empty(self) -> bool:
         """ returns boolean describing if queue is empty """
-        return self.front is None
+        if self.size == 0:
+            return True
+        else:
+            return False
 
     def enqueue(self, value):
-        node = Node(value)
-        if self.is_empty():
-            self.front = node
-            self.rear = node
-        else:
-            assert isinstance(self.rear, Node)
-            self.rear.next = node
-            self.rear = node
+        self.storage.add_to_head(value)
+        self.size += 1
 
     def dequeue(self):
         if self.is_empty():
             return None
         else:
-            assert isinstance(self.front, Node)
-            node: Node = self.front
-            self.front = node.next
-            if self.front is None:
-                self.rear = None
-        return node.data
+            self.size -= 1
+            ret_val = self.storage.remove_tail()
+        return ret_val
