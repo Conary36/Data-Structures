@@ -24,18 +24,16 @@ class BSTNode:
         if value < self.value:
             if self.left is None:
                 self.left = BSTNode(value)
-        else:
-            # repeat process for node to left, if not present, create node
-            if self.left.value:
-                self.left = BSTNode(value)
+            else:
+                # repeat process for node to left, if not present, create node
+                self.left.insert(value)
         # check if new node value is greater than or equal to new node value against self.value
         # after check value, repeat process for right side
-        if value > self.value:
+        elif value >= self.value:
             if self.right is None:
                 self.right = BSTNode(value)
-        else:
-            if self.right.value:
-                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -45,16 +43,19 @@ class BSTNode:
             # If yes return True,
             return True
         # If No:
-        elif self.value != target:
-            return False
-        print("Do you choose the left or right value?")
-        # go left?
+        # go right
+        elif self.value <= target:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
+        # Or go left
         if target < self.value:
-            print("You chose a lesser value")
-        # go right?
-        else:
-            if target > self.value:
-                print("Your value is more that the chosen value")
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(target)
+
 
 
     # Return the maximum value found in the tree

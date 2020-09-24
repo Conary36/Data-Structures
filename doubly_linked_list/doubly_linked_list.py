@@ -123,20 +123,25 @@ class DoublyLinkedList:
     """
 
     def delete(self, node):
+        # If the list is empty do nothing
         if not self.head and not self.tail:
             return None
+        # If list is only one node
         elif self.head == self.tail:
             self.head = None
             self.tail = None
             self.length -= 1
+        # If the node is the HEAD node
         elif self.head == node:
             self.head = node.next
             self.length -= 1
             node.delete()
+        # If the node is the TAIL node
         elif self.tail == node:
             self.tail = node.prev
             self.length -= 1
             node.delete()
+        # If the node is just an arbitrary node in the list
         else:
             self.length -= 1
             node.delete()
