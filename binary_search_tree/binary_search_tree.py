@@ -56,41 +56,69 @@ class BSTNode:
             else:
                 return self.left.contains(target)
 
-
-
     # Return the maximum value found in the tree
     def get_max(self):
         # Go right till you can not anymore
         # Return value at far right
-        pass
+        if self.right is None:
+            return self.value
+        else:
+            return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        fn(self.value)
+        if self.right is not None:
+            self.right.for_each(fn)
+        if self.left is not None:
+            self.left.for_each(fn)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        # Lowest number is number to left
+        # base case?
+        if not self:
+            return
+        # recursive case?
+        if self.left:
+            self.in_order_print()
+        print(self.value)
+        if self.right:
+            self.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
         pass
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
     def dft_print(self):
-        pass
+        stack = []
+        stack.append(self)
+
+        while len(stack) > 0:
+            node = stack.pop()
+            # call 'print()'
+            print(node.value)
+            # push its left and right children onto stack
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
-        pass
+        print(self.value)
+
+        if self.left is not None:
+            self.left.pre_order_dft()
+        if self.right is not None:
+            self.right.pre_order_dft()
 
     # Print Post-order recursive DFT
     def post_order_dft(self):
