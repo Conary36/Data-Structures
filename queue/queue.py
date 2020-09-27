@@ -14,51 +14,51 @@ Stretch: What if you could only use instances of your Stack class to implement t
          What would that look like? How many Stacks would you need? Try it!
 """
 
-# class Queue:
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = []
-#
-#     def __len__(self):
-#         return len(self.storage)
-#
-#     def enqueue(self, value):
-#         return self.storage.insert(value)
-#
-#     def dequeue(self):
-#        if len(self.storage) == 0:
-#            return None
-#         return self.storage.pop(0)
-#
-# import sys
-
-# sys.path.append('./singly_linked_list/')
-from singly_linked_list.singly_linked_list import LinkedList
-
-
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = []
 
     def __len__(self):
-        return self.size
-
-    def is_empty(self) -> bool:
-        """ returns boolean describing if queue is empty """
-        if self.size == 0:
-            return True
-        else:
-            return False
+        return len(self.storage)
 
     def enqueue(self, value):
-        self.storage.add_to_head(value)
-        self.size += 1
+        return self.storage.insert(value)
 
     def dequeue(self):
-        if self.is_empty():
-            return None
-        else:
-            self.size -= 1
-            ret_val = self.storage.remove_tail()
-        return ret_val
+       if len(self.storage) == 0:
+           return None
+        return self.storage.pop(0)
+
+# import sys
+
+# sys.path.append('./singly_linked_list/')
+# from singly_linked_list.singly_linked_list import LinkedList
+#
+#
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+#
+#     def __len__(self):
+#         return self.size
+#
+#     def is_empty(self) -> bool:
+#         """ returns boolean describing if queue is empty """
+#         if self.size == 0:
+#             return True
+#         else:
+#             return False
+#
+#     def enqueue(self, value):
+#         self.storage.add_to_head(value)
+#         self.size += 1
+#
+#     def dequeue(self):
+#         if self.is_empty():
+#             return None
+#         else:
+#             self.size -= 1
+#             ret_val = self.storage.remove_tail()
+#         return ret_val
